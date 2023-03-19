@@ -1,0 +1,57 @@
+<section class="salary-add-modal">
+       
+    
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalPay" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <form action="/vendors/<%=data.v_id%>/pay_Bill" method="post">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-6">
+                        <p>Vendor ID</p>
+                    </div>
+                    <div class="col-6">
+                        <input type="text" name="v_id" value="<%=data.v_id%>" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p>Company NAME</p>
+                    </div>
+                    <div class="col-6">
+                        <input type="text" name="c_name" value="<%=data.v_company%>" required>
+                    </div>
+                </div>   
+                <div class="row">
+                    <div class="col-6">
+                        <p>PAY DATE</p>
+                    </div>
+                    <div class="col-6">
+                        <input type="date" name="add_date" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p>PAY AMOUNT</p>
+                    </div>
+                    <div class="col-6">
+                        <input type="number" name="pay_amount" id="total" required>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>    
+        </div>
+    </div>
+    </div>
+</section>

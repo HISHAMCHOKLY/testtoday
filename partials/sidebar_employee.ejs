@@ -1,0 +1,24 @@
+<div class="sidebar">
+    <div class="sidebar-item mt-3 ml-2">
+        <a href="/employee/<%=data.emp_type%>/<%=data.emp_id%>" class="btn btn-outline-dark btn-block text-decoration-none">HOME</a>
+    </div>
+    <div class="sidebar-item mt-3 ml-2">
+        <a href="#" class="text-decoration-none"><a class="btn btn-outline-dark btn-block" data-toggle="modal" data-target="#exampleModal1">PAY SALARY</a></a>
+    </div>
+    <div class="sidebar-item mt-3 ml-2">
+        <a href="#" class="text-decoration-none"><a  href="/employee/<%=data.emp_type%>/<%=data.emp_id%>/add_history" class="btn btn-outline-dark btn-block"> ADD HISTORY</a></a>
+    </div>
+    <div class="sidebar-item mt-3 ml-2">
+        <a href="#" class="text-decoration-none"><a  href="/employee/<%=data.emp_type%>/<%=data.emp_id%>/pay_history" class="btn btn-outline-dark btn-block"> PAY HISTORY</a></a>
+    </div>
+    <div class="sidebar-item mt-3 ml-2">
+        <a href="#" class="text-decoration-none"><a  href="/employee/<%=data.emp_type%>/<%=data.emp_id%>/update" class="btn btn-outline-dark btn-block"> UPDATE </a></a>
+    </div>
+    <%if(data.emp_type='manufacturer'){%>
+        <div class="sidebar-item mt-3 ml-2">
+            <a href="#" class="text-decoration-none"><a  href="/employee/<%=data.emp_type%>/<%=data.emp_id%>/set_amount" class="btn btn-outline-dark btn-block">SET THOP AMOUNT</a></a>
+        </div>
+    <%}%>    
+
+
+</div>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <title>Bill Report</title>
+</head>
+<body>
+    <%-include('../partials/navbar.ejs')%>
+
+    <div class="row">
+        <div class="col-10 offset-1">
+            <div class="container">
+                <p class="h1 text-center">Report</p>
+                <form action="/payroll/billReport" method="post">
+                    <div class="row text-right">
+                        <div class="col-2 offset-3">
+                            <p>Select Employee:</p>
+                        </div>
+                        <div class="col-2">
+                            <select name="emp_id" id="branches">
+                                <option value="">Select item</option>
+                                <%employees.forEach((x)=>{%>
+                                    <option value="<%=x.emp_id%>"><%=x.emp_id%>-<%=x.emp_name%></option>
+                                <%})%>
+                              </select>
+                        </div>
+                    </div>
+                    <div class="row text-right">
+                        <div class="col-2 offset-1">
+                            <p>Start Date</p>
+                        </div>
+                        <div class="col-2">
+                            <input type="date" name="start"  value="<%=start%>" required>
+                        </div>
+                        <div class="col-2">
+                            <p>End Date</p>
+                        </div>
+                        <div class="col-2">
+                            <input type="date" name="end" value="<%=end%>" required>
+                        </div>            
+                    </div>
+                    <div class="row text-center">
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-success">Submit</button>
+                        </div>
+                    </div>
+                </form>    
+            </div>
+            <div class="row">
+                <div class="col-12 mt-5">
+                    <div class="row text-center">
+                        <div class="col-6 border">
+                            <p class="h2">Total Number</p>
+                            <p class="h3"><%=nitem%></p>
+
+                        </div>
+                        <div class="col-6 border ">
+                            <p class="h2">Total Amount</p>
+                            <p class="h3"><%=tamount%></p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 mt-5">
+                    <div class="container">  
+                        <table id="example" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>NO</th>
+                                    <th>Employee Id</th>
+                                    <th>Bill Number</th>
+                                    <th>Type</th>
+                                    <th>Cutter</th>
+                                    <th>No of item</th>
+                                    <th>Date</th>
+                                    <th>Total</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                              
+                              <%data.forEach((x)=>{%>
+                                <tr>
+                                    <td></td>
+                                    <td><%=x.emp_id%></td>
+                                    <td><%=x.bill_number%></td>
+                                    <td><%=x.thop_type%></td>
+                                    <td><%=x.cutter_id%></td>
+                                    <td><%=x.no_items%></td>
+                                    <td><%=x.date%></td>
+                                    <td><%=x.amount%></td>
+        
+                                </tr>
+                              <%})%>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+
+
+    <%-include('../partials/sales_add_modal.ejs')%>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+<script>
+
+$(document).ready(function () {
+        let t = $('#example').DataTable({
+            columnDefs: [
+                {
+                    searchable: false,
+                    orderable: false,
+                    targets: 0,
+                },
+            ],
+            order: [],
+        });
+        t.on('order.dt search.dt', function () {
+            let i = 1;
+    
+            t.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
+                this.data(i++);
+            });
+        }).draw();
+
+});
+      let base=parseInt(document.getElementById('perItem').value)
+     function calcPerAmount() {
+         let select=document.getElementById('select')
+        let a=parseInt(document.getElementById('perItem').value)
+        if(select.value=='collar'){
+            document.getElementById('perItem').value=a+3
+        }else{
+            if(a<=base){
+                document.getElementById('perItem').value=30
+            }else{
+                document.getElementById('perItem').value=a-3
+            }
+        }
+        
+    }   
+    $("body").on("input", "#no_items", function(){
+        $('#total').val(parseInt($('#perItem').val())*parseInt($('#no_items').val()))
+
+    })
+
+</script>     
+</body>
+</html>

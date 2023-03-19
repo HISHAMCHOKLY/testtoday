@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <title>Payroll</title>
+    <style>
+        body{
+            background-color: #F5F5F5 ;
+            overflow-y: hidden;
+        }
+        a{
+            text-decoration: none;
+        }
+        a:hover{
+            text-decoration: none;
+        }
+        button {
+            border: none;
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #898879;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            margin: 10px;
+            font-size: 16px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+        background-color: #969588;
+        }
+
+        
+    </style>
+</head>
+<body >
+    <%-include('../partials/navbar.ejs')%>
+
+    <div class="home">
+        <div class="row">
+            <div class="col-10 offset-1">
+                <div class="row mt-5">
+                    <div class="col-8 offset-2">
+                        <div class="row">
+                            <div class="col-6 col-md-6">
+                                <a href="/payroll/addBill"><button class="btn-block mt-5 h-75">ADD BILL</button></a>                                
+                            </div>
+                            <div class="col-6  col-md-6">
+                                <a href="/payroll/addBillHistory"><button class="btn-block mt-5  h-75">BILL HISTORY</button></a>
+                                
+                            </div>
+                            <div class="col-12  col-md-6 offset-3 text-center">
+                                <a href="/payroll/billReport"><button class="btn-block mt-5  h-75">BILL REPORT</button></a>
+                                
+                            </div>
+                            
+                            <div class="col-6 col-md-6">
+                                <a href="/payroll/addSalary"><button class="btn-block mt-5 h-75">ADD SALARY</button></a>
+                                
+                            </div>
+                            <div class="col-6 col-md-6">
+                                <a href="/payroll/salaryHistory"><button class="btn-block mt-5 h-75">SALARY HISTORY</button></a>
+                                
+                            </div>
+                            <div class="col-6 col-md-6">
+                                <a href="/payroll/addttrs"><button class="btn-block mt-5 h-75">ADD TTRS</button></a>
+                                
+                            </div>
+                            <div class="col-6 col-md-6">
+                                <a href="/payroll/ttrsHistory"><button class="btn-block mt-5 h-75">TTRS HISTORY</button></a>
+                                
+                            </div>
+                      
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+
+
+
+
+ 
+  
+</body>
+</html>
